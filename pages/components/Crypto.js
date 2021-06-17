@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import addToBasket from "../../slices/favoriteSlice";
 
 function Crypto({
   name,
@@ -11,68 +9,49 @@ function Crypto({
   volume,
   image,
   priceChange,
-  price_change_percentage_24h,
+
   id,
 }) {
-  const dispatch = useDispatch();
-
-  const addItemToBasket = () => {
-    const fav = {
-      name,
-      price,
-      symbol,
-      marketcap,
-      volume,
-      image,
-      priceChange,
-    };
-
-    dispatch(addToBasket(fav));
-  };
-
   return (
-    // <Link href="/[id]" as={`/${id}`}>
-    <a>
-      <CoinContainer className="flex flex-wrap">
-        <CoinRow>
-          <Coin>
-            <CoinImg>
-              <img src={image} alt={name} />
-            </CoinImg>
+    <Link href="/[id]" as={`/${id}`}>
+      <a>
+        <CoinContainer className="flex flex-wrap">
+          <CoinRow>
+            <Coin>
+              <CoinImg>
+                <img src={image} alt={name} />
+              </CoinImg>
 
-            <Coinh1>
-              <h1>{name}</h1>
-            </Coinh1>
-            <CoinP>
-              <p>{symbol}</p>
-            </CoinP>
-          </Coin>
-          <CoinData>
-            <CoinPrice>
-              <p>&#8377;{price}</p>
-            </CoinPrice>
-            <CoinVol>
-              <p>&#8377;{volume.toLocaleString()}</p>
-            </CoinVol>
-            <Percent>
-              {priceChange < 0 ? (
-                <p className="text-red-500">{priceChange.toFixed(2)}%</p>
-              ) : (
-                <p className="text-green-500">{priceChange.toFixed(2)}%</p>
-              )}
-            </Percent>
+              <Coinh1>
+                <h1>{name}</h1>
+              </Coinh1>
+              <CoinP>
+                <p>{symbol}</p>
+              </CoinP>
+            </Coin>
+            <CoinData>
+              <CoinPrice>
+                <p>&#8377;{price}</p>
+              </CoinPrice>
+              <CoinVol>
+                <p>&#8377;{volume.toLocaleString()}</p>
+              </CoinVol>
+              <Percent>
+                {priceChange < 0 ? (
+                  <p className="text-red-500">{priceChange.toFixed(2)}%</p>
+                ) : (
+                  <p className="text-green-500">{priceChange.toFixed(2)}%</p>
+                )}
+              </Percent>
 
-            <MarketCap>
-              <p>MarketCap: &#8377;{marketcap.toLocaleString()}</p>
-            </MarketCap>
-            <Fav>
-              <button onClick={addItemToBasket}>Add to favorites</button>
-            </Fav>
-          </CoinData>
-        </CoinRow>
-      </CoinContainer>
-    </a>
-    //  </Link>
+              <MarketCap>
+                <p>MarketCap: &#8377;{marketcap.toLocaleString()}</p>
+              </MarketCap>
+            </CoinData>
+          </CoinRow>
+        </CoinContainer>
+      </a>
+    </Link>
   );
 }
 
@@ -139,15 +118,4 @@ const MarketCap = styled.div`
 
 const Percent = styled.div`
   width: 100px;
-`;
-const Fav = styled.button`
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black;
-  padding: 5px;
-
-  :hover {
-    background-color: yellow;
-    color: black;
-  }
 `;

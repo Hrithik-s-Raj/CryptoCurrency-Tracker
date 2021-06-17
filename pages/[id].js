@@ -2,15 +2,14 @@ import React from "react";
 import Layout from "./components/Layout";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import addToBasket from "../slices/favoriteSlice";
+import addToFavorites from "../slices/favoriteSlice";
+import Favorites from "./Favorites";
 
 function Crypto({ crypto }) {
   const dispatch = useDispatch();
 
   const addItemToBasket = () => {
-    const fav = {};
-
-    dispatch(addToBasket(fav));
+    dispatch(addToFavorites(crypto));
   };
 
   return (
@@ -21,8 +20,6 @@ function Crypto({ crypto }) {
           <h1>{crypto.name}</h1>
           <p>{crypto.symbol}</p>
           <p>&#8377;{crypto.market_data.current_price.inr}</p>
-
-          <button onClick={addItemToBasket}>Add to favorites</button>
         </CoinContainer>
       </CoinPage>
     </Layout>
@@ -40,7 +37,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       crypto: data,
-      id: data.id,
     },
   };
 }

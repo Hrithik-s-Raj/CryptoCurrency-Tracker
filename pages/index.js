@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Home({ filteredCoins }) {
   const [search, setSearch] = useState("");
-  const [favorite, setfavorite] = useState("");
+  
 
   const allCoins = filteredCoins.filter((crypto) =>
     crypto.name.toLowerCase().includes(search.toLowerCase())
@@ -19,6 +19,8 @@ export default function Home({ filteredCoins }) {
 
     setSearch(e.target.value.toLowerCase());
   };
+
+
   return (
     <Layout>
       <Head>
