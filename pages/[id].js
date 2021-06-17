@@ -3,7 +3,6 @@ import Layout from "./components/Layout";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import addToFavorites from "../slices/favoriteSlice";
-import Favorites from "./Favorites";
 
 function Crypto({ crypto }) {
   const dispatch = useDispatch();
