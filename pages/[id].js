@@ -5,6 +5,22 @@ import { useDispatch } from "react-redux";
 import addToFavorites from "../slices/favoriteSlice";
 
 function Crypto({ crypto }) {
+  /* const dispatch = useDispatch();
+
+  const addItemToBasket = () => {
+    const favorites={
+
+      crypto,
+    }
+
+    
+
+
+    
+  };
+
+  dispatch(addToFavorites(fav));
+*/
   return (
     <Layout>
       <CoinPage>
